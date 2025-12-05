@@ -8,11 +8,10 @@ Many websites have fixed fonts, cramped spacing, and distracting elements that m
 
 ## Features
 
-- **Dyslexia-Friendly Font** - Switch to a heavier, more readable font style
-- **Adjustable Font Size** - Scale text from 0.8x to 2.0x
+- **Dyslexia-Friendly Font** - Switch to Comic Sans MS for better readability
 - **Line Spacing Control** - Adjust line height for better readability (1.0 to 3.0)
 - **Word Spacing Control** - Add space between words (0 to 0.5em)
-- **High-Contrast Themes** - Choose from Light, Dark, or High Contrast modes
+- **Dyslexia-Friendly Colors** - Soft color schemes that reduce visual stress (automatically matches your system theme - light or dark)
 - **Distraction-Free Mode** - Automatically hide sidebars, ads, and popups
 - **Line Highlighting** - Highlight text blocks on hover to maintain focus
 
@@ -30,9 +29,9 @@ Many websites have fixed fonts, cramped spacing, and distracting elements that m
 1. Click the extension icon in your Chrome toolbar
 2. Adjust the settings using the sliders and toggles:
    - Toggle "Enable Extension" on/off
-   - Choose your preferred font style
-   - Adjust font size, line spacing, and word spacing
-   - Select a contrast theme
+   - Choose your preferred font style (Default or Dyslexia-Friendly)
+   - Adjust line spacing and word spacing
+   - Enable dyslexia-friendly colors (automatically adapts to your system's light/dark mode)
    - Enable distraction-free mode to hide clutter
    - Enable line highlighting for better focus
 3. Settings are saved automatically and persist across pages
