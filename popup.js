@@ -2,7 +2,6 @@
 const defaultSettings = {
   enabled: true,
   fontMode: 'default',
-  fontSize: 1.0,
   lineSpacing: 1.5,
   wordSpacing: 0.1,
   theme: 'default',
@@ -14,8 +13,6 @@ const defaultSettings = {
 const elements = {
   enabled: document.getElementById('enabled'),
   fontMode: document.getElementById('fontMode'),
-  fontSize: document.getElementById('fontSize'),
-  fontSizeValue: document.getElementById('fontSizeValue'),
   lineSpacing: document.getElementById('lineSpacing'),
   lineSpacingValue: document.getElementById('lineSpacingValue'),
   wordSpacing: document.getElementById('wordSpacing'),
@@ -30,8 +27,6 @@ function loadSettings() {
   chrome.storage.sync.get(defaultSettings, (settings) => {
     elements.enabled.checked = settings.enabled;
     elements.fontMode.value = settings.fontMode;
-    elements.fontSize.value = settings.fontSize;
-    elements.fontSizeValue.textContent = settings.fontSize;
     elements.lineSpacing.value = settings.lineSpacing;
     elements.lineSpacingValue.textContent = settings.lineSpacing;
     elements.wordSpacing.value = settings.wordSpacing;
@@ -47,7 +42,6 @@ function saveSettings() {
   const settings = {
     enabled: elements.enabled.checked,
     fontMode: elements.fontMode.value,
-    fontSize: parseFloat(elements.fontSize.value),
     lineSpacing: parseFloat(elements.lineSpacing.value),
     wordSpacing: parseFloat(elements.wordSpacing.value),
     theme: elements.theme.value,
@@ -62,6 +56,11 @@ function saveSettings() {
         chrome.tabs.sendMessage(tabs[0].id, {
           type: 'UPDATE_SETTINGS',
           settings: settings
+        }, (response) => {
+          // Ignore errors - content script may not be loaded yet
+          if (chrome.runtime.lastError) {
+            console.log('Content script not ready:', chrome.runtime.lastError.message);
+          }
         });
       }
     });
@@ -74,11 +73,6 @@ elements.fontMode.addEventListener('change', saveSettings);
 elements.theme.addEventListener('change', saveSettings);
 elements.distractionFree.addEventListener('change', saveSettings);
 elements.lineHighlight.addEventListener('change', saveSettings);
-
-elements.fontSize.addEventListener('input', () => {
-  elements.fontSizeValue.textContent = elements.fontSize.value;
-  saveSettings();
-});
 
 elements.lineSpacing.addEventListener('input', () => {
   elements.lineSpacingValue.textContent = elements.lineSpacing.value;

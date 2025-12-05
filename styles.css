@@ -1,53 +1,73 @@
 /* CSS Variables for dynamic settings */
 :root {
-  --uae-font-size: 1rem;
   --uae-line-height: 1.5;
   --uae-word-spacing: 0.1em;
 }
 
-/* Dyslexia-friendly font */
-.uae-dyslexia-font * {
-  font-family: 'Comic Sans MS', 'Arial', sans-serif !important;
+/* Dyslexia-friendly font - more aggressive */
+.uae-dyslexia-font,
+.uae-dyslexia-font *,
+body.uae-dyslexia-font,
+body.uae-dyslexia-font * {
+  font-family: 'Comic Sans MS', 'Trebuchet MS', 'Arial', sans-serif !important;
   font-weight: 600 !important;
 }
 
-/* Active state - apply spacing adjustments */
-body.uae-active * {
-  font-size: var(--uae-font-size) !important;
+/* Active state - apply spacing adjustments more aggressively */
+body.uae-active,
+body.uae-active p,
+body.uae-active div,
+body.uae-active span,
+body.uae-active li,
+body.uae-active td,
+body.uae-active h1,
+body.uae-active h2,
+body.uae-active h3,
+body.uae-active h4,
+body.uae-active h5,
+body.uae-active h6 {
   line-height: var(--uae-line-height) !important;
   word-spacing: var(--uae-word-spacing) !important;
 }
 
+
+
 /* Theme: Light */
 body.uae-theme-light,
-body.uae-theme-light * {
+body.uae-theme-light *:not(img):not(svg):not(video) {
   background-color: #fdfdfd !important;
   color: #111 !important;
+  border-color: #ddd !important;
 }
 
-body.uae-theme-light a {
+body.uae-theme-light a,
+body.uae-theme-light a * {
   color: #0066cc !important;
 }
 
 /* Theme: Dark */
 body.uae-theme-dark,
-body.uae-theme-dark * {
+body.uae-theme-dark *:not(img):not(svg):not(video) {
   background-color: #1a1a1a !important;
   color: #e0e0e0 !important;
+  border-color: #444 !important;
 }
 
-body.uae-theme-dark a {
+body.uae-theme-dark a,
+body.uae-theme-dark a * {
   color: #66b3ff !important;
 }
 
 /* Theme: High Contrast */
 body.uae-theme-high-contrast,
-body.uae-theme-high-contrast * {
+body.uae-theme-high-contrast *:not(img):not(svg):not(video) {
   background-color: #000 !important;
   color: #ffff00 !important;
+  border-color: #ffff00 !important;
 }
 
-body.uae-theme-high-contrast a {
+body.uae-theme-high-contrast a,
+body.uae-theme-high-contrast a * {
   color: #00ff00 !important;
   text-decoration: underline !important;
 }
@@ -59,16 +79,22 @@ body.uae-distraction-free .sidebar,
 body.uae-distraction-free .ad,
 body.uae-distraction-free .advertisement,
 body.uae-distraction-free .banner,
+body.uae-distraction-free nav:not([role="navigation"]),
 body.uae-distraction-free [class*="sidebar"],
 body.uae-distraction-free [id*="sidebar"],
 body.uae-distraction-free [class*="ad-"],
-body.uae-distraction-free [id*="ad-"] {
+body.uae-distraction-free [id*="ad-"],
+body.uae-distraction-free [class*="advertisement"],
+body.uae-distraction-free iframe[src*="ads"],
+body.uae-distraction-free iframe[src*="doubleclick"] {
   display: none !important;
+  visibility: hidden !important;
 }
 
 /* Line highlighting on hover */
 .uae-highlight-hover:hover {
-  background-color: rgba(255, 255, 0, 0.3) !important;
-  outline: 2px solid rgba(255, 200, 0, 0.5) !important;
-  outline-offset: 2px;
+  background-color: rgba(255, 255, 0, 0.25) !important;
+  outline: 2px solid rgba(255, 200, 0, 0.6) !important;
+  outline-offset: 2px !important;
+  transition: all 0.2s ease !important;
 }
