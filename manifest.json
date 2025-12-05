@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "PagePal",
+  "version": "1.0.0",
+  "description": "Your friendly reading companion. Customize any webpage with dyslexia-friendly fonts, adjustable spacing, high-contrast themes, and distraction-free mode.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["contentScript.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "128": "icons/icon128.png"
+  }
+}

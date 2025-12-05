@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+*.tmp
+
+# Extension packaging
+*.crx
+*.pem
+*.zip
+
+# Node modules (if you add build tools later)
+node_modules/

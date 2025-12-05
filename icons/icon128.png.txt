@@ -1,0 +1,7 @@
+This is a placeholder for the extension icon.
+To create a proper icon:
+1. Create a 128x128 PNG image with your logo
+2. Name it icon128.png
+3. Place it in this icons/ folder
+
+For now, you can use any 128x128 PNG as a placeholder.
