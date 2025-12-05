@@ -7,9 +7,8 @@ function applySettingsToPage(settings) {
   body.classList.remove(
     'uae-active',
     'uae-dyslexia-font',
-    'uae-theme-light',
-    'uae-theme-dark',
-    'uae-theme-high-contrast',
+    'uae-dyslexia-light',
+    'uae-dyslexia-dark',
     'uae-distraction-free'
   );
 
@@ -36,9 +35,16 @@ function applySettingsToPage(settings) {
     body.classList.add('uae-dyslexia-font');
   }
 
-  // Apply theme
-  if (settings.theme !== 'default') {
-    body.classList.add('uae-theme-' + settings.theme);
+  // Apply dyslexia colors based on system preference
+  if (settings.dyslexiaColors) {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDark) {
+      body.classList.add('uae-dyslexia-dark');
+      console.log('Dyslexia dark mode enabled (system preference)');
+    } else {
+      body.classList.add('uae-dyslexia-light');
+      console.log('Dyslexia light mode enabled (system preference)');
+    }
   }
 
   // Apply distraction-free mode
@@ -90,7 +96,7 @@ chrome.storage.sync.get({
   fontMode: 'default',
   lineSpacing: 1.5,
   wordSpacing: 0.1,
-  theme: 'default',
+  dyslexiaColors: false,
   distractionFree: false,
   lineHighlight: false
 }, (settings) => {

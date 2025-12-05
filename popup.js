@@ -4,23 +4,13 @@ const defaultSettings = {
   fontMode: 'default',
   lineSpacing: 1.5,
   wordSpacing: 0.1,
-  theme: 'default',
+  dyslexiaColors: false,
   distractionFree: false,
   lineHighlight: false
 };
 
-// Get all UI elements
-const elements = {
-  enabled: document.getElementById('enabled'),
-  fontMode: document.getElementById('fontMode'),
-  lineSpacing: document.getElementById('lineSpacing'),
-  lineSpacingValue: document.getElementById('lineSpacingValue'),
-  wordSpacing: document.getElementById('wordSpacing'),
-  wordSpacingValue: document.getElementById('wordSpacingValue'),
-  theme: document.getElementById('theme'),
-  distractionFree: document.getElementById('distractionFree'),
-  lineHighlight: document.getElementById('lineHighlight')
-};
+// Get all UI elements (will be populated on DOMContentLoaded)
+let elements = {};
 
 // Load saved settings
 function loadSettings() {
@@ -31,7 +21,7 @@ function loadSettings() {
     elements.lineSpacingValue.textContent = settings.lineSpacing;
     elements.wordSpacing.value = settings.wordSpacing;
     elements.wordSpacingValue.textContent = settings.wordSpacing;
-    elements.theme.value = settings.theme;
+    elements.dyslexiaColors.checked = settings.dyslexiaColors;
     elements.distractionFree.checked = settings.distractionFree;
     elements.lineHighlight.checked = settings.lineHighlight;
   });
@@ -44,7 +34,7 @@ function saveSettings() {
     fontMode: elements.fontMode.value,
     lineSpacing: parseFloat(elements.lineSpacing.value),
     wordSpacing: parseFloat(elements.wordSpacing.value),
-    theme: elements.theme.value,
+    dyslexiaColors: elements.dyslexiaColors.checked,
     distractionFree: elements.distractionFree.checked,
     lineHighlight: elements.lineHighlight.checked
   };
@@ -67,22 +57,37 @@ function saveSettings() {
   });
 }
 
-// Add event listeners
-elements.enabled.addEventListener('change', saveSettings);
-elements.fontMode.addEventListener('change', saveSettings);
-elements.theme.addEventListener('change', saveSettings);
-elements.distractionFree.addEventListener('change', saveSettings);
-elements.lineHighlight.addEventListener('change', saveSettings);
-
-elements.lineSpacing.addEventListener('input', () => {
-  elements.lineSpacingValue.textContent = elements.lineSpacing.value;
-  saveSettings();
-});
-
-elements.wordSpacing.addEventListener('input', () => {
-  elements.wordSpacingValue.textContent = elements.wordSpacing.value;
-  saveSettings();
-});
-
 // Load settings on popup open
-document.addEventListener('DOMContentLoaded', loadSettings);
+document.addEventListener('DOMContentLoaded', () => {
+  // Get all UI elements
+  elements = {
+    enabled: document.getElementById('enabled'),
+    fontMode: document.getElementById('fontMode'),
+    lineSpacing: document.getElementById('lineSpacing'),
+    lineSpacingValue: document.getElementById('lineSpacingValue'),
+    wordSpacing: document.getElementById('wordSpacing'),
+    wordSpacingValue: document.getElementById('wordSpacingValue'),
+    dyslexiaColors: document.getElementById('dyslexiaColors'),
+    distractionFree: document.getElementById('distractionFree'),
+    lineHighlight: document.getElementById('lineHighlight')
+  };
+  
+  loadSettings();
+  
+  // Add event listeners
+  elements.enabled.addEventListener('change', saveSettings);
+  elements.fontMode.addEventListener('change', saveSettings);
+  elements.dyslexiaColors.addEventListener('change', saveSettings);
+  elements.distractionFree.addEventListener('change', saveSettings);
+  elements.lineHighlight.addEventListener('change', saveSettings);
+
+  elements.lineSpacing.addEventListener('input', () => {
+    elements.lineSpacingValue.textContent = elements.lineSpacing.value;
+    saveSettings();
+  });
+
+  elements.wordSpacing.addEventListener('input', () => {
+    elements.wordSpacingValue.textContent = elements.wordSpacing.value;
+    saveSettings();
+  });
+});
